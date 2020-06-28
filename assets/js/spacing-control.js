@@ -9,7 +9,7 @@ const { __ } = wp.i18n;
 
 // Enable spacing control on the following blocks
 const enableSpacingControlOnBlocks = [
-	'core/image',
+	'core/paragraph',
 ];
 
 // Available spacing control options
@@ -83,11 +83,12 @@ const withSpacingControl = createHigherOrderComponent( ( BlockEdit ) => {
 				<BlockEdit { ...props } />
 				<InspectorControls>
 					<PanelBody
-						title={ __( 'My Spacing Control' ) }
+						title={ __( 'Font Size' ) }
 						initialOpen={ true }
 					>
+
 						<SelectControl
-							label={ __( 'Spacing' ) }
+							label={ __( 'Select' ) }
 							value={ spacing }
 							options={ spacingControlOptions }
 							onChange={ ( selectedSpacingOption ) => {
@@ -120,15 +121,15 @@ const addSpacingExtraProps = ( saveElementProps, blockType, attributes ) => {
 		return saveElementProps;
 	}
 
-	const margins = {
-		small: '5px',
-		medium: '15px',
-		large: '30px',
+	const type = {
+		small: '12',
+		medium: '18',
+		large: '28',
 	};
 
-	if ( attributes.spacing in margins ) {
+	if ( attributes.spacing in type ) {
 		// Use Lodash's assign to gracefully handle if attributes are undefined
-		assign( saveElementProps, { style: { 'margin-bottom': margins[ attributes.spacing ] } } );
+		assign( saveElementProps, { className: 'o-type-' + type[ attributes.spacing ] } );
 	}
 
 	return saveElementProps;

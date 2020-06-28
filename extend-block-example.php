@@ -24,7 +24,7 @@ function extend_block_example_enqueue_block_editor_assets() {
     // Enqueue our script
     wp_enqueue_script(
         'extend-block-example-js',
-        esc_url( plugins_url( '/dist/extend-block-example.js', __FILE__ ) ),
+        esc_url( get_template_directory_uri() .  '/extensions/dist/extend-block-example.js' ),
         array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
         '1.0.0',
         true // Enqueue the script in the footer.
